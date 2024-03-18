@@ -4,7 +4,7 @@ const buttonSyle ="text-white mt-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 fo
 
     return (
         <>
-        <button type="button" onClick={handleClick} className={buttonSyle}>{children}</button>
+        <button type="submit" onClick={handleClick} className={buttonSyle}>{children}</button>
         
         
         
