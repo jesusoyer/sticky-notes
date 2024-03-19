@@ -3,3 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.background {
+    /* Set the background image */
+    background-image: url('./images/corkBoard.png');
+  
+    /* Define background properties */
+    background-size: cover;
+    background-position: center;
+   
+  }

@@ -8,7 +8,7 @@ function App() {
   const [noteItems, setNoteItems] = useState([]);
 
   return (
-    <div className="bg-corkboard-medium min-h-screen">
+    <div className=" mb-10">
       <div className=" mx-32">
         <Header />
         <FormComponent noteItems={setNoteItems} />

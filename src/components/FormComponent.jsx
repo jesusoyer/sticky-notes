@@ -61,9 +61,9 @@ export default function FormComponent({ noteItems }) {
 
   return (
     <>
-      <div className="mx-auto ml-auto w-1/2 text-center bg-yellow-200 rounded-xl mb-5">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="title" className="mt-10 text-xl">
+      <div className="mx-auto ml-auto w-1/2 text-center bg-yellow-200 shadow-2xl mb-5">
+        <form onSubmit={handleSubmit} className="p-5">
+          <label htmlFor="title" className=" text-xl">
             Title of Sticky Note
           </label>
           <input
@@ -80,7 +80,7 @@ export default function FormComponent({ noteItems }) {
           <textarea
             type="text"
             id="note"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto mb-5"
             placeholder="note"
             required
             value={newNote.note}
