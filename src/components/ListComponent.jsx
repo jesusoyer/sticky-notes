@@ -1,35 +1,49 @@
-import { FaThumbtack } from "react-icons/fa6";
-
+// import { FaThumbtack } from "react-icons/fa6";
+import {useState, useEffect} from 'react';
+import StickyNote from './StickyNote';
 
 
 
 export default function ListComponent({ setNoteItems, noteItems }) {
-  const handleDeleteButton = (idToDelete) => {
-    setNoteItems((prevArray) =>
-      prevArray.filter((item) => item.id !== idToDelete)
-    );
-    console.log("button clicked");
-  };
-  window.addEventListener('load', async () => {
-    try {
-      const response = await fetch("https://f68sqb3l92.execute-api.us-east-2.amazonaws.com/prod/StickyNotesFunction", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await fetch("https://f68sqb3l92.execute-api.us-east-2.amazonaws.com/prod/StickyNotesFunction", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const valuesArray = data.values
+                console.log(valuesArray)
+                setNotes(valuesArray); // Set the retrieved data to state
+            } else {
+                console.error("Failed to fetch data:", await response.text());
+            }
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+    };
+
+    fetchData();
+}, []);
+
+
+
+
+  // const handleDeleteButton = (idToDelete) => {
+  //   setNoteItems((prevArray) =>
+  //     prevArray.filter((item) => item.id !== idToDelete)
+  //   );
+  //   console.log("button clicked");
+  // };
   
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Data retrieved successfully:", data);
-      } else {
-        console.error("Failed to fetch data:", await response.text());
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
-  });
-  
+  console.log(notes)
 
 
 
@@ -37,7 +51,7 @@ export default function ListComponent({ setNoteItems, noteItems }) {
     <>
     <div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-10 ">
-        {noteItems.map((item) => (
+        {/* {noteItems.map((item) => (
           <div
             key={item.id}
             className="bg-gray-100 p-6  bg-yellow-200 font-handwritten shadow-2xl"
@@ -59,7 +73,17 @@ export default function ListComponent({ setNoteItems, noteItems }) {
             <p className="text-gray-600">{item.note}</p>
             <p className="mt-4">{item.date}</p>
           </div>
-        ))}
+        ))} */}
+        {notes.map(note => (
+                    <StickyNote
+                        key={note[0]}
+                        id={note[0]}
+                        date={note[1]}
+                        title={note[2]}
+                        note={note[3]}
+                        
+                    />
+                ))}
       </div>
     </div>
   </>
