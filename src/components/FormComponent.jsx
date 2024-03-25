@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReusableButton from "./ReusableButton";
 
-export default function FormComponent({ noteItems }) {
+export default function FormComponent({ noteItems}) {
   const [isSaving, setIsSaving] = useState(false);
 
   const today = new Date();
@@ -41,6 +41,11 @@ export default function FormComponent({ noteItems }) {
     event.preventDefault();
     setIsSaving(true);
     setIsSaving((isSaving) => !isSaving);
+
+    
+
+
+
     noteItems((prevNoteItems) => [
       ...prevNoteItems,
       {
@@ -50,6 +55,9 @@ export default function FormComponent({ noteItems }) {
         note: note,
       },
     ]);
+
+    
+
     handleClear();
   };
   const handleKeyDown = (event) => {

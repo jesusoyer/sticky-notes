@@ -10,6 +10,28 @@ export default function ListComponent({ setNoteItems, noteItems }) {
     );
     console.log("button clicked");
   };
+  window.addEventListener('load', async () => {
+    try {
+      const response = await fetch("https://f68sqb3l92.execute-api.us-east-2.amazonaws.com/prod/StickyNotesFunction", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Data retrieved successfully:", data);
+      } else {
+        console.error("Failed to fetch data:", await response.text());
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  });
+  
+
+
 
   return (
     <>
