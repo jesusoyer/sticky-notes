@@ -17,6 +17,43 @@ const StickyNote = () => {
     console.log("Email:", email);
     console.log("Password:", password);
 
+    const postData = async () => {
+        try {
+          const response = await fetch("https://f68sqb3l92.execute-api.us-east-2.amazonaws.com/auth/oAuthFunction", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          });
+      
+          if (response.ok) {
+            const responseData = await response.json();
+            console.log('Data posted successfully:', responseData);
+            // Perform further actions if needed
+          } else {
+            console.error('Failed to post data:', await response.text());
+          }
+        } catch (error) {
+          console.error('An error occurred while posting data:', error);
+        }
+      };
+      postData();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
     // Clear the form inputs after submission (optional)
     setEmail("");
     setPassword("");
